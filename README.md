@@ -26,6 +26,5 @@ npm run dev
 ### Run with Docker
 Docker should be installed and running.
 ```bash
-docker build -t vite-app .
-docker run --env-file .env -p 3000:3000 --name frontend-container vite-app
+docker-compose up --build
 ```

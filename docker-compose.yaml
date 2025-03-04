@@ -1,0 +1,18 @@
+services:
+  frontend:
+    image: vite-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend-container
+    ports:
+      - "${VITE_PORT}:${VITE_PORT}"
+    env_file:
+      - .env
+    command: "npm run dev"
+    networks:
+      - frontend-network
+
+networks:
+  frontend-network:
+    driver: bridge
