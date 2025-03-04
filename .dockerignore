@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# CI
+.codeclimate.yml
+.travis.yml
+.taskcluster.yml
+
+# Docker
+docker-compose.yml
+.docker
+
+# Distribution / packaging
+build/
+dist/
+node_modules/
+
+# Virtual environment
+.env/
+.venv/
+venv/
+
+# PyCharm
+.idea
+
+*.swp
+.ropeproject/
