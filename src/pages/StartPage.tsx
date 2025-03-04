@@ -1,7 +1,6 @@
-import React from "react";
 import { Typography, Container, Button, Box } from "@mui/material";
 
-const StartPage: React.FC = () => {
+const StartPage = () => {
   return (
     <Container>
       <Typography variant="h3" sx={{ marginBottom: 2 }}>
