@@ -4,19 +4,16 @@ import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 
 import { RoutesEnum } from "../routes";
 
-
 interface HeaderButtonProps {
   to: string;
   text: string;
 }
 
-
-const HeaderButton: React.FC<HeaderButtonProps> = ({to, text}) => (
+const HeaderButton: React.FC<HeaderButtonProps> = ({ to, text }) => (
   <Button color="inherit" component={Link} to={to}>
     {text}
   </Button>
-)
-
+);
 
 export const Header = () => (
   <AppBar position="static">

@@ -11,25 +11,22 @@ import {
 
 import { RoutesEnum } from "../routes";
 
-
 interface SidebarItemProps {
   to: string;
   text: string;
 }
 
-
-const SidebarItem: React.FC<SidebarItemProps> = ({to, text}) => (
+const SidebarItem: React.FC<SidebarItemProps> = ({ to, text }) => (
   <>
     <ListItem>
-        <ListItemButton component={Link} to={to}>
-          <ListItemText primary={text} />
-        </ListItemButton>
-      </ListItem>
+      <ListItemButton component={Link} to={to}>
+        <ListItemText primary={text} />
+      </ListItemButton>
+    </ListItem>
 
-      <Divider />
+    <Divider />
   </>
-)
-
+);
 
 export const Sidebar = () => (
   <Box
