@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import Sidebar from "./Sidebar";
+import { Header } from "./Header.tsx";
+import { Footer } from "./Footer.tsx";
+import { Sidebar } from "./Sidebar";
 
-const Layout = () => (
+export const Layout = () => (
   <Box
     sx={{
       display: "flex",
@@ -34,5 +34,3 @@ const Layout = () => (
     <Footer />
   </Box>
 );
-
-export default Layout;

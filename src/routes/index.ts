@@ -1,1 +1,2 @@
-export { default as AppRoutes } from "./Routes.tsx";
+export { AppRoutes } from "./Routes.tsx";
+export { RoutesEnum } from "./RoutesEnum.ts"

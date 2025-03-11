@@ -2,7 +2,7 @@ import { Typography, Container, Box } from "@mui/material";
 
 import { UniversalModal } from "../components";
 
-const Home = () => {
+export const Home = () => {
   return (
     <Container>
       <Typography variant="h3" sx={{ marginBottom: 2 }}>
@@ -17,5 +17,3 @@ const Home = () => {
     </Container>
   );
 };
-
-export default Home;

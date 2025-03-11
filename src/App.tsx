@@ -5,7 +5,7 @@ import { AppRoutes } from "./routes";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
 
-function App() {
+export function App() {
   return (
     <BrowserRouter>
       <CssBaseline />
@@ -13,5 +13,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

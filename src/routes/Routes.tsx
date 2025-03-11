@@ -1,26 +1,20 @@
 import { Routes, Route } from "react-router-dom";
 
 import { Layout } from "../components";
-import { Home } from "../pages";
-import { About } from "../pages";
-import { UsersList } from "../pages";
-import { UserProfile } from "../pages";
-import { CompaniesList } from "../pages";
-import { CompanyProfile } from "../pages";
+import { Home, About, UsersList, UserProfile, CompaniesList, CompanyProfile } from "../pages";
+import { RoutesEnum } from "./RoutesEnum.ts";
 
-const AppRoutes = () => {
+export const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/users" element={<UsersList />} />
-        <Route path="/users/:id" element={<UserProfile />} />
-        <Route path="/companies" element={<CompaniesList />} />
-        <Route path={"/companies/:id"} element={<CompanyProfile />} />
+        <Route path={RoutesEnum.HOME} element={<Home />} />
+        <Route path={RoutesEnum.ABOUT} element={<About />} />
+        <Route path={RoutesEnum.USERS} element={<UsersList />} />
+        <Route path={`${RoutesEnum.USERS}/:id`} element={<UserProfile />} />
+        <Route path={RoutesEnum.COMPANIES} element={<CompaniesList />} />
+        <Route path={`${RoutesEnum.COMPANIES}/:id`} element={<CompanyProfile />} />
       </Route>
     </Routes>
   );
 };
-
-export default AppRoutes;

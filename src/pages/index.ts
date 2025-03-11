@@ -1,6 +1,6 @@
-export { default as Home } from "./Home.tsx";
-export { default as About } from "./About.tsx";
-export { default as UsersList } from "./UsersList.tsx";
-export { default as UserProfile } from "./UserProfile.tsx";
-export { default as CompaniesList } from "./CompaniesList.tsx";
-export { default as CompanyProfile } from "./CompanyProfile.tsx";
+export { Home } from "./Home.tsx";
+export { About } from "./About.tsx";
+export { UsersList } from "./UsersList.tsx";
+export { UserProfile } from "./UserProfile.tsx";
+export { CompaniesList } from "./CompaniesList.tsx";
+export { CompanyProfile } from "./CompanyProfile.tsx";

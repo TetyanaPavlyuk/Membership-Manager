@@ -9,50 +9,43 @@ import {
   Divider,
 } from "@mui/material";
 
-const Sidebar: React.FC = () => {
-  return (
-    <Box
-      sx={{
-        width: 240,
-        display: "flex",
-        flexDirection: "column",
-        height: "100vh",
-        position: "sticky",
-      }}
-    >
-      <List>
-        <ListItem>
-          <ListItemButton component={Link} to="/">
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
+import { RoutesEnum } from "../routes";
 
-        <Divider />
 
-        <ListItem>
-          <ListItemButton component={Link} to="/about">
-            <ListItemText primary="About" />
-          </ListItemButton>
-        </ListItem>
+interface SidebarItemProps {
+  to: string;
+  text: string;
+}
 
-        <Divider />
 
-        <ListItem>
-          <ListItemButton component={Link} to="/companies">
-            <ListItemText primary="Companies" />
-          </ListItemButton>
-        </ListItem>
+const SidebarItem: React.FC<SidebarItemProps> = ({to, text}) => (
+  <>
+    <ListItem>
+        <ListItemButton component={Link} to={to}>
+          <ListItemText primary={text} />
+        </ListItemButton>
+      </ListItem>
 
-        <Divider />
+      <Divider />
+  </>
+)
 
-        <ListItem>
-          <ListItemButton component={Link} to="/users">
-            <ListItemText primary="Users" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Box>
-  );
-};
 
-export default Sidebar;
+export const Sidebar = () => (
+  <Box
+    sx={{
+      width: 240,
+      display: "flex",
+      flexDirection: "column",
+      height: "100vh",
+      position: "sticky",
+    }}
+  >
+    <List>
+      <SidebarItem to={RoutesEnum.HOME} text="Home" />
+      <SidebarItem to={RoutesEnum.ABOUT} text="About" />
+      <SidebarItem to={RoutesEnum.USERS} text="Users" />
+      <SidebarItem to={RoutesEnum.COMPANIES} text="Companies" />
+    </List>
+  </Box>
+);
