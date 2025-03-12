@@ -8,6 +8,7 @@ import {
   UserProfile,
   CompaniesList,
   CompanyProfile,
+  NotFound,
 } from "../pages";
 import { RoutesEnum } from "./RoutesEnum.ts";
 
@@ -25,6 +26,7 @@ export const AppRoutes = () => {
           element={<CompanyProfile />}
         />
       </Route>
+      <Route path="*" element={<NotFound/>} />
     </Routes>
   );
 };

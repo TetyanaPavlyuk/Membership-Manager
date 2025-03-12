@@ -2,13 +2,15 @@ import { Typography, Container, Box } from "@mui/material";
 
 import { UniversalModal } from "../components";
 
+import "./Home.css"
+
 export const Home = () => {
   return (
-    <Container>
-      <Typography variant="h3" sx={{ marginBottom: 2 }}>
+    <Container className="homeContainer">
+      <Typography variant="h3">
         Meduzzen
       </Typography>
-      <Typography variant="h5" sx={{ marginBottom: 4 }}>
+      <Typography variant="h5">
         Nice to see you!
       </Typography>
       <Box>

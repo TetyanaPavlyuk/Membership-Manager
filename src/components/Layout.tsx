@@ -5,29 +5,14 @@ import { Header } from "./Header.tsx";
 import { Footer } from "./Footer.tsx";
 import { Sidebar } from "./Sidebar";
 
+import "./Layout.css"
+
 export const Layout = () => (
-  <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      width: "100vw",
-      Height: "100vh",
-      boxSizing: "border-box",
-    }}
-  >
+  <Box className="layoutBox">
     <Header />
-    <Box
-      sx={{
-        display: "flex",
-        flex: 1,
-      }}
-    >
+    <Box className="innerBox">
       <Sidebar />
-      <Box
-        sx={{
-          flex: 1,
-        }}
-      >
+      <Box className="outletBox">
         <Outlet />
       </Box>
     </Box>

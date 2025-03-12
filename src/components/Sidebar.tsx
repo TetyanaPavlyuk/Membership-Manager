@@ -1,23 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Divider,
-} from "@mui/material";
+import { Box, Divider, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 import { RoutesEnum } from "../routes";
+
+import "./Sidebar.css";
 
 interface SidebarItemProps {
   to: string;
   text: string;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ to, text }) => (
-  <>
+const SidebarItem: React.FC<SidebarItemProps> = ({ to, text }: SidebarItemProps) => (
+  <Box>
     <ListItem>
       <ListItemButton component={Link} to={to}>
         <ListItemText primary={text} />
@@ -25,24 +20,23 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ to, text }) => (
     </ListItem>
 
     <Divider />
-  </>
-);
-
-export const Sidebar = () => (
-  <Box
-    sx={{
-      width: 240,
-      display: "flex",
-      flexDirection: "column",
-      height: "100vh",
-      position: "sticky",
-    }}
-  >
-    <List>
-      <SidebarItem to={RoutesEnum.HOME} text="Home" />
-      <SidebarItem to={RoutesEnum.ABOUT} text="About" />
-      <SidebarItem to={RoutesEnum.USERS} text="Users" />
-      <SidebarItem to={RoutesEnum.COMPANIES} text="Companies" />
-    </List>
   </Box>
 );
+
+export const Sidebar = () => {
+  const navLinks = [
+    {path: RoutesEnum.HOME, label: "Home"},
+    {path: RoutesEnum.ABOUT, label: "About"},
+    {path: RoutesEnum.USERS, label: "Users"},
+    {path: RoutesEnum.COMPANIES, label: "Companies"}
+  ]
+  return (
+    <Box className="sidebarBox">
+      <List>
+        {navLinks.map((navLink) => (
+          <SidebarItem key={navLink.path} to={navLink.path} text={navLink.label} />
+        ))}
+      </List>
+    </Box>
+    )
+};
