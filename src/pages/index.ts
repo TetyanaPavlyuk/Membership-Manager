@@ -4,4 +4,4 @@ export { UsersList } from "./UsersList.tsx";
 export { UserProfile } from "./UserProfile.tsx";
 export { CompaniesList } from "./CompaniesList.tsx";
 export { CompanyProfile } from "./CompanyProfile.tsx";
-export {NotFound} from "./NotFound.tsx";
+export { NotFound } from "./NotFound.tsx";

@@ -1,9 +1,9 @@
 import { Typography, Container, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { RoutesEnum } from "../routes";
+import { RoutesEnum } from "../routes/RoutesEnum.ts";
 
-import "./NotFound.css"
+import "./NotFound.css";
 
 export const NotFound = () => {
   return (

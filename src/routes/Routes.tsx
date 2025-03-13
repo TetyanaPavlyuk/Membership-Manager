@@ -26,7 +26,7 @@ export const AppRoutes = () => {
           element={<CompanyProfile />}
         />
       </Route>
-      <Route path="*" element={<NotFound/>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

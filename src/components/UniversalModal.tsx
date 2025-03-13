@@ -24,7 +24,7 @@ export const UniversalModal = () => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography>
-          <Typography id="modal-modal-description" marginTop="10px">
+          <Typography id="modal-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography>
         </Box>

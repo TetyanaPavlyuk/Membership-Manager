@@ -1,11 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { Header } from "./Header.tsx";
-import { Footer } from "./Footer.tsx";
-import { Sidebar } from "./Sidebar";
+import { Header, Footer, Sidebar } from "./";
 
-import "./Layout.css"
+import "./Layout.css";
 
 export const Layout = () => (
   <Box className="layoutBox">
