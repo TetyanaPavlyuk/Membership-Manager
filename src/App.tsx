@@ -1,8 +1,15 @@
-import StartPage from "./pages/StartPage.tsx";
+import { BrowserRouter } from "react-router-dom";
+
+import { AppRoutes } from "./routes";
+
+import { CssBaseline } from "@mui/material";
 import "./App.css";
 
-function App() {
-  return <StartPage />;
+export function App() {
+  return (
+    <BrowserRouter>
+      <CssBaseline />
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
-
-export default App;

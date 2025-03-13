@@ -1,0 +1,10 @@
+.appToolbar {
+  display: flex;
+  padding: 15px;
+}
+
+.navBox {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+}

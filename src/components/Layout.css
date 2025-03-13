@@ -1,0 +1,15 @@
+.layoutBox {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.innerBox {
+  flex: 1;
+  display: flex;
+}
+
+.outletBox {
+  flex: 1;
+}
