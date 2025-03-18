@@ -1,0 +1,21 @@
+{
+  "about": "Про нас",
+  "about_page": "Сторінка про нас",
+  "companies": "Компанії",
+  "companies_list": "Список компаній",
+  "company_name": "Meduzzen",
+  "company_profile": "Профіль компанії",
+  "company_year": "Meduzzen, 2025",
+  "go_home": "На головну",
+  "greeting": "Раді вас вітати!",
+  "home": "Головна",
+  "language": "Мова",
+  "modal_title": "Заголовок модального вікна",
+  "modal_text": "Текст модального вікна",
+  "not_found": "404 - Сторінка не знайдена",
+  "not_found_message": "Вибачте, сторінка яку ви шукаєте не існує.",
+  "open_modal": "Відкрити модальне вікно",
+  "user_profile": "Профіль користувача",
+  "users": "Користувачі",
+  "users_list": "Список користувачів"
+}

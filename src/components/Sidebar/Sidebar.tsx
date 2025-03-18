@@ -8,7 +8,7 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import { navLinks } from "./";
+import { getNavLinks } from "../";
 
 import "./Sidebar.css";
 
@@ -32,8 +32,8 @@ const SidebarItem = ({ to, text }: SidebarItemProps) => (
 export const Sidebar = () => (
   <Box className="sidebarBox">
     <List>
-      {navLinks.map(({ to, text }) => (
-        <SidebarItem to={to} text={text} />
+      {getNavLinks().map(({ to, text }) => (
+        <SidebarItem key={to} to={to} text={text} />
       ))}
     </List>
   </Box>

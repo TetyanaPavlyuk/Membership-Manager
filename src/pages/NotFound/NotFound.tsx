@@ -1,21 +1,21 @@
 import { Typography, Container, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import { RoutesEnum } from "../routes/RoutesEnum.ts";
+import { RoutesEnum } from "../../routes/RoutesEnum.ts";
 
 import "./NotFound.css";
 
 export const NotFound = () => {
+  const { t } = useTranslation();
   return (
     <Container className="notFoundContainer">
       <Typography variant="h3" color="error">
-        404 - Page Not Found
+        {t("not_found")}
       </Typography>
-      <Typography variant="body1">
-        Sorry, the page you are looking for does not exist.
-      </Typography>
+      <Typography variant="body1">{t("not_found_message")}</Typography>
       <Button variant="contained" component={Link} to={RoutesEnum.HOME}>
-        Go Home
+        {t("go_home")}
       </Button>
     </Container>
   );

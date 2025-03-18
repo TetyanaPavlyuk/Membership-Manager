@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { Header, Footer, Sidebar } from "./";
+import { Header, Footer, Sidebar } from "../index.ts";
 
 import "./Layout.css";
 

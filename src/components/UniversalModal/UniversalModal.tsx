@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { useTranslation } from "react-i18next";
 
 import "./UniversalModal.css";
 
@@ -10,10 +11,11 @@ export const UniversalModal = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { t } = useTranslation();
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>{t("open_modal")}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -22,10 +24,10 @@ export const UniversalModal = () => {
       >
         <Box className="modalBox">
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            {t("modal_title")}
           </Typography>
           <Typography id="modal-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {t("modal_text")}
           </Typography>
         </Box>
       </Modal>

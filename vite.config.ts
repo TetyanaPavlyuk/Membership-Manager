@@ -1,10 +1,8 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
-import {config} from "dotenv";
-
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { config } from "dotenv";
 
 config();
-
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,4 +11,4 @@ export default defineConfig({
     host: process.env.VITE_HOST || "0.0.0.0",
     port: parseInt(process.env.VITE_PORT || "3000"),
   },
-})
+});

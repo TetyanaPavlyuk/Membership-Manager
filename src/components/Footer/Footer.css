@@ -1,0 +1,9 @@
+.footerToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerText {
+  flex-grow: 1;
+}
