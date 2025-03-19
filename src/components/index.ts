@@ -1,6 +1,6 @@
-export { Header } from "./Header.tsx";
-export { Footer } from "./Footer.tsx";
-export { Sidebar } from "./Sidebar.tsx";
-export { Layout } from "./Layout.tsx";
-export { UniversalModal } from "./UniversalModal.tsx";
-export { navLinks } from "./NavLinks.ts";
+export * from "./Footer";
+export * from "./Header";
+export * from "./Layout";
+export * from "./Sidebar";
+export * from "./UniversalModal";
+export * from "./LanguageSelector";

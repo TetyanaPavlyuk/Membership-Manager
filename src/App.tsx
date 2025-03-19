@@ -5,11 +5,11 @@ import { AppRoutes } from "./routes";
 import { CssBaseline } from "@mui/material";
 import "./App.css";
 
-export function App() {
+export const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
       <AppRoutes />
     </BrowserRouter>
   );
-}
+};

@@ -7,8 +7,9 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-import { navLinks } from "./";
+import { navLinks } from "../NavLinks.ts";
 
 import "./Sidebar.css";
 
@@ -29,12 +30,15 @@ const SidebarItem = ({ to, text }: SidebarItemProps) => (
   </Box>
 );
 
-export const Sidebar = () => (
-  <Box className="sidebarBox">
-    <List>
-      {navLinks.map(({ to, text }) => (
-        <SidebarItem to={to} text={text} />
-      ))}
-    </List>
-  </Box>
-);
+export const Sidebar = () => {
+  const { t } = useTranslation();
+  return (
+    <Box className="sidebarBox">
+      <List>
+        {navLinks.map(({ to, text }) => (
+          <SidebarItem key={to} to={to} text={t(text)} />
+        ))}
+      </List>
+    </Box>
+  );
+};
