@@ -1,1 +1,1 @@
-export { UserProfile } from "./UserProfile.tsx";
+export * from "./UserProfile.tsx";

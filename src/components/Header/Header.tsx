@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { getNavLinks } from "../";
+import { navLinks } from "../NavLinks.ts";
 
 import "./Header.css";
 
@@ -13,9 +13,9 @@ export const Header = () => {
       <Toolbar className="appToolbar">
         <Typography variant="h4">{t("company_name")}</Typography>
         <Box className="navBox">
-          {getNavLinks().map(({ to, text }) => (
+          {navLinks.map(({ to, text }) => (
             <Button key={to} color="inherit" component={Link} to={to}>
-              {text}
+              {t(text)}
             </Button>
           ))}
         </Box>

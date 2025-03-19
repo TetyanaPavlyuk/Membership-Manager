@@ -1,1 +1,1 @@
-export { Layout } from "./Layout.tsx";
+export * from "./Layout.tsx";

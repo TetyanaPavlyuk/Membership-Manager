@@ -1,1 +1,1 @@
-export { CompaniesList } from "./CompaniesList.tsx";
+export * from "./CompaniesList.tsx";

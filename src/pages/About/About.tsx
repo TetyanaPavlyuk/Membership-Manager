@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { Typography } from "@mui/material";
 
 export const About = () => {
   const { t } = useTranslation();
-  return <h1>{t("about_page")}</h1>;
+  return <Typography variant="h3">{t("about_page")}</Typography>;
 };

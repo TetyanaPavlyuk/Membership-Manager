@@ -1,1 +1,1 @@
-export { About } from "./About.tsx";
+export * from "./About.tsx";

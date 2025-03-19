@@ -1,1 +1,1 @@
-export { UniversalModal } from "./UniversalModal.tsx";
+export * from "./UniversalModal.tsx";

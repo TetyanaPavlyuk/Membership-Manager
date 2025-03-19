@@ -1,1 +1,1 @@
-export { UsersList } from "./UsersList.tsx";
+export * from "./UsersList.tsx";
