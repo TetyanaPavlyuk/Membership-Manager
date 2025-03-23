@@ -10,7 +10,7 @@ import {
   CompanyProfile,
   NotFound,
 } from "../pages";
-import { RoutesEnum } from "./RoutesEnum.ts";
+import { RoutesEnum } from "../enum";
 
 export const AppRoutes = () => {
   return (

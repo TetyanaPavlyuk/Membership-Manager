@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { LanguagesEnum } from "../../i18n/LanguagesEnum.ts";
+import { LanguagesEnum } from "../../enum";
 
 import "./LanguageSelector.css";
 import { useEffect } from "react";

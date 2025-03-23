@@ -2,7 +2,7 @@ import { Typography, Container, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { RoutesEnum } from "../../routes/RoutesEnum.ts";
+import { RoutesEnum } from "../../enum";
 
 import "./NotFound.css";
 
