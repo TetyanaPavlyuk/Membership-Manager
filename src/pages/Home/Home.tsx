@@ -9,7 +9,7 @@ export const Home = () => {
   const { t } = useTranslation();
   return (
     <Container className="homeContainer">
-      <Typography variant="h3">{t("company_name")}</Typography>
+      <Typography variant="h3">{t("companyName")}</Typography>
       <Typography variant="h5">{t("greeting")}</Typography>
       <Box>
         <UniversalModal />

@@ -1,14 +1,14 @@
 export interface User {
   id: number;
   email: string;
-  hashed_password: string;
-  is_active: boolean;
-  is_superuser: boolean;
-  full_name: string | null;
+  hashedPassword: string;
+  isActive: boolean;
+  isSuperuser: boolean;
+  fullName: string | null;
 }
 
 export interface UserState {
-  list: User[];
+  users: User[];
   loading: boolean;
   error: string | null;
 }

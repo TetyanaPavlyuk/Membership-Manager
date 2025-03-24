@@ -12,44 +12,28 @@ import {
   CircularProgress,
   Alert,
 } from "@mui/material";
+
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setUsers, setLoading, setError } from "../../features";
+import { usersData } from "../../mocks"
 
 import "./UsersList.css";
+
+
+const usersListFields = ["id", "email", "fullName"];
 
 export const UsersList = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const {
-    list: users,
-    loading,
-    error,
+    users, loading, error,
   } = useAppSelector((state) => state.users);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         dispatch(setLoading(true));
-        const users_data = [
-          // Temporary: just for testing
-          {
-            id: 1,
-            email: "test1@mail.com",
-            hashed_password: "skfjlflkj",
-            is_active: true,
-            is_superuser: false,
-            full_name: "Some Name",
-          },
-          {
-            id: 2,
-            email: "test2@mail.com",
-            hashed_password: "skfjlflkj",
-            is_active: true,
-            is_superuser: false,
-            full_name: null,
-          },
-        ];
-        dispatch(setUsers(users_data));
+        dispatch(setUsers(usersData));
         dispatch(setLoading(false));
       } catch (err) {
         if (err instanceof Error) {
@@ -77,11 +61,9 @@ export const UsersList = () => {
     );
   }
 
-  const usersListFields = ["id", "email", "full_name"];
-
   return (
     <Box>
-      <Typography variant="h3">{t("users_list")}</Typography>
+      <Typography variant="h3">{t("usersList")}</Typography>
       <TableContainer className="usersTableContainer">
         <Table>
           <TableHead className="usersTableHead">
@@ -107,7 +89,7 @@ export const UsersList = () => {
                   {user.email}
                 </TableCell>
                 <TableCell className="usersTableBodyCell">
-                  {user.full_name ?? t("n_a")}
+                  {user.fullName ?? t("nA")}
                 </TableCell>
               </TableRow>
             ))}

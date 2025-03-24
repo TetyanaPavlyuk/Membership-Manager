@@ -11,7 +11,7 @@ export const Footer = () => {
     <AppBar position="static">
       <Toolbar className="footerToolbar">
         <Typography className="footerText" variant="h6">
-          {t("company_year")}
+          {t("companyYear")}
         </Typography>
         <LanguageSelector />
       </Toolbar>

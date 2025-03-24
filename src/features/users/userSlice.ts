@@ -4,17 +4,17 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { User, UserState } from "./";
 
 const initialState: UserState = {
-  list: [],
+  users: [],
   loading: false,
   error: null,
 };
 
-export const Slice = createSlice({
+export const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
     setUsers: (state, action: PayloadAction<User[]>) => {
-      state.list = action.payload;
+      state.users = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -25,5 +25,5 @@ export const Slice = createSlice({
   },
 });
 
-export const { setUsers, setLoading, setError } = Slice.actions;
-export const userReducer = Slice.reducer;
+export const { setUsers, setLoading, setError } = userSlice.actions;
+export const userReducer = userSlice.reducer;

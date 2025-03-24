@@ -15,7 +15,7 @@ export const UniversalModal = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>{t("open_modal")}</Button>
+      <Button onClick={handleOpen}>{t("openModal")}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -24,10 +24,10 @@ export const UniversalModal = () => {
       >
         <Box className="modalBox">
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {t("modal_title")}
+            {t("modalTitle")}
           </Typography>
           <Typography id="modal-modal-description">
-            {t("modal_text")}
+            {t("modalText")}
           </Typography>
         </Box>
       </Modal>

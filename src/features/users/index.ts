@@ -1,2 +1,2 @@
-export * from "./slice.ts";
-export * from "./types.ts";
+export * from "./userSlice.ts";
+export * from "./userTypes.ts";
