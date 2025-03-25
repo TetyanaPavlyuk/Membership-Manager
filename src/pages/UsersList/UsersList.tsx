@@ -15,19 +15,16 @@ import {
 
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setUsers, setLoading, setError } from "../../features";
-import { usersData } from "../../mocks"
+import { usersData } from "../../mocks";
 
 import "./UsersList.css";
-
 
 const usersListFields = ["id", "email", "fullName"];
 
 export const UsersList = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const {
-    users, loading, error,
-  } = useAppSelector((state) => state.users);
+  const { users, loading, error } = useAppSelector((state) => state.users);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -39,7 +36,7 @@ export const UsersList = () => {
         if (err instanceof Error) {
           dispatch(setError(err.message));
         } else {
-          dispatch(setError("Something went wrong"));
+          dispatch(setError(t("wrong")));
         }
       }
     };
