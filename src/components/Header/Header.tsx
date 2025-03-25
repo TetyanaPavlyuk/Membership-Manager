@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar className="appToolbar">
-        <Typography variant="h4">{t("company_name")}</Typography>
+        <Typography variant="h4">{t("companyName")}</Typography>
         <Box className="navBox">
           {navLinks.map(({ to, text }) => (
             <Button key={to} color="inherit" component={Link} to={to}>

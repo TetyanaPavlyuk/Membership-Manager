@@ -2,7 +2,7 @@ import { Typography, Container, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { RoutesEnum } from "../../routes/RoutesEnum.ts";
+import { RoutesEnum } from "../../enum";
 
 import "./NotFound.css";
 
@@ -11,11 +11,11 @@ export const NotFound = () => {
   return (
     <Container className="notFoundContainer">
       <Typography variant="h3" color="error">
-        {t("not_found")}
+        {t("notFound")}
       </Typography>
-      <Typography variant="body1">{t("not_found_message")}</Typography>
+      <Typography variant="body1">{t("notFoundMessage")}</Typography>
       <Button variant="contained" component={Link} to={RoutesEnum.HOME}>
-        {t("go_home")}
+        {t("goHome")}
       </Button>
     </Container>
   );

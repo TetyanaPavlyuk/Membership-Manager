@@ -1,0 +1,25 @@
+.usersTableContainer {
+  padding: 5px;
+}
+
+.usersTableHead,
+.usersTableHeadCell {
+  border: solid 2px darkgray;
+}
+
+.usersTableHeadCell {
+  background-color: lightgrey;
+  font-weight: bolder;
+}
+
+.usersTableBody,
+.usersTableBodyCell {
+  border: solid 1px gray;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}

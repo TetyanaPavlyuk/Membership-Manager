@@ -1,4 +1,4 @@
-import { RoutesEnum } from "../routes/RoutesEnum.ts";
+import { RoutesEnum } from "../enum";
 
 export const navLinks = [
   { to: RoutesEnum.HOME, text: "home" },
