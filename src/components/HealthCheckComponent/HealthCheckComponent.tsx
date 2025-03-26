@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { checkHealth, HealthResponse } from "../../API";
@@ -9,40 +9,26 @@ export const HealthCheckComponent = () => {
   const [modalTitle, setModalTitle] = useState<string>("");
   const [modalText, setModalText] = useState<string>("");
 
-  const checkHealthText = useMemo(() => t("checkHealth"), [t]);
-  const checkingStateText = useMemo(() => t("checkingState"), [t]);
-  const serverUpText = useMemo(() => t("serverUp"), [t]);
-  const serverUpDetailText = useMemo(() => t("serverUpText"), [t]);
-  const serverDownText = useMemo(() => t("serverDown"), [t]);
-  const serverDownDetailText = useMemo(() => t("serverDownText"), [t]);
-
   useEffect(() => {
-    setModalTitle(checkHealthText);
-    setModalText(checkingStateText);
+    setModalTitle(t("checkHealth"));
+    setModalText(t("checkingState"));
 
     const checkServerHealth = async () => {
       try {
         const healthResponse: HealthResponse = await checkHealth();
-        setModalTitle(serverUpText);
-        setModalText(healthResponse.result || serverUpDetailText);
+        setModalTitle(t("serverUp"));
+        setModalText(healthResponse.result || t("serverUpText"));
       } catch (error) {
-        setModalTitle(serverDownText);
-        setModalText(serverDownDetailText);
+        setModalTitle(t("serverDown"));
+        setModalText(t("serverDownText"));
       }
     };
     checkServerHealth();
-  }, [
-    checkHealthText,
-    checkingStateText,
-    serverUpText,
-    serverUpDetailText,
-    serverDownText,
-    serverDownDetailText,
-  ]);
+  }, [t]);
 
   return (
     <UniversalModal
-      buttonText={checkHealthText}
+      buttonText={t("checkHealth")}
       modalTitle={modalTitle}
       modalText={modalText}
     />
