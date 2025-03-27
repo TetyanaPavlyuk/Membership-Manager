@@ -1,7 +1,7 @@
 import { Typography, Container, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { UniversalModal } from "../../components";
+import { HealthCheckComponent } from "../../components";
 
 import "./Home.css";
 
@@ -12,7 +12,7 @@ export const Home = () => {
       <Typography variant="h3">{t("companyName")}</Typography>
       <Typography variant="h5">{t("greeting")}</Typography>
       <Box>
-        <UniversalModal />
+        <HealthCheckComponent />
       </Box>
     </Container>
   );

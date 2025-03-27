@@ -1,6 +1,8 @@
 {
   "about": "About",
   "aboutPage": "About Page",
+  "checkHealth": "Check server connection",
+  "checkingState": "Checking if the server is up and running...",
   "companies": "Companies",
   "companiesList": "Companies List",
   "companyName": "Meduzzen",
@@ -13,13 +15,15 @@
   "home": "Home",
   "id": "ID",
   "language": "Language",
-  "modalTitle": "Modal title",
-  "modalText": "Text in a modal",
   "nA": "N/A",
   "notFound": "404 - Page Not Found",
   "notFoundMessage": "Sorry, the page you are looking for does not exist.",
-  "openModal": "Open Modal",
+  "serverDown": "Server is Down!",
+  "serverDownText": "There was an issue connecting to the server.",
+  "serverUp": "Server is Up!",
+  "serverUpText": "The server is running smoothly.",
   "userProfile": "User Profile",
   "users": "Users",
-  "usersList": "Users List"
+  "usersList": "Users List",
+  "wrong": "Something went wrong"
 }
