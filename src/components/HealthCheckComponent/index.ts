@@ -1,1 +1,1 @@
-export * from "./HealthCheckComponent.tsx";
+export * from "./HealthCheckComponent";

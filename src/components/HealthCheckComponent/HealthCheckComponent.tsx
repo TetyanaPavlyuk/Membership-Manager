@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { checkHealth, HealthResponse } from "../../API";
+import { checkHealthAPI, HealthResponse } from "../../api";
 import { UniversalModal } from "../";
 import { Box, Button } from "@mui/material";
 
@@ -15,7 +15,7 @@ export const HealthCheckComponent = () => {
 
   const checkServerHealth = async () => {
     try {
-      const healthResponse: HealthResponse = await checkHealth();
+      const healthResponse: HealthResponse = await checkHealthAPI();
       setModalTitle(t("serverUp"));
       setModalText(healthResponse.result || t("serverUpText"));
     } catch (error) {

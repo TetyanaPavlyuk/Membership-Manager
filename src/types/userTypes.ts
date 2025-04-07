@@ -1,14 +1,19 @@
 export interface User {
   id: number;
   email: string;
-  hashedPassword: string;
   isActive: boolean;
   isSuperuser: boolean;
   fullName: string | null;
 }
 
-export interface UserState {
+export interface UsersState {
   users: User[];
+  loading: boolean;
+  error: string | null;
+}
+
+export interface UserState {
+  user: User | null;
   loading: boolean;
   error: string | null;
 }

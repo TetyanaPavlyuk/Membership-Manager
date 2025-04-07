@@ -45,14 +45,14 @@ export const UsersList = () => {
 
   if (loading) {
     return (
-      <Box className="statusContainer">
+      <Box className="usersStatusContainer">
         <CircularProgress />
       </Box>
     );
   }
   if (error) {
     return (
-      <Box className="statusContainer">
+      <Box className="usersStatusContainer">
         <Alert severity="error">{error}</Alert>
       </Box>
     );

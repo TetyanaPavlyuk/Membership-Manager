@@ -5,4 +5,6 @@ export const navLinks = [
   { to: RoutesEnum.ABOUT, text: "about" },
   { to: RoutesEnum.USERS, text: "users" },
   { to: RoutesEnum.COMPANIES, text: "companies" },
+  { to: RoutesEnum.REGISTRATION, text: "registration" },
+  { to: RoutesEnum.LOGIN, text: "login" },
 ];

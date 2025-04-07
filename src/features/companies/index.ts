@@ -1,1 +1,1 @@
-export * from "./companySlice.ts";
+export * from "./companySlice";

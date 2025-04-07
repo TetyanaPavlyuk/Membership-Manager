@@ -5,3 +5,5 @@ export * from "./Sidebar";
 export * from "./UniversalModal";
 export * from "./LanguageSelector";
 export * from "./HealthCheckComponent";
+export * from "./Logout";
+export * from "./PrivateRoute";

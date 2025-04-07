@@ -4,7 +4,6 @@ export const usersData: User[] = [
   {
     id: 1,
     email: "test1@mail.com",
-    hashedPassword: "skfjlflkj",
     isActive: true,
     isSuperuser: false,
     fullName: "Some Name",
@@ -12,7 +11,6 @@ export const usersData: User[] = [
   {
     id: 2,
     email: "test2@mail.com",
-    hashedPassword: "skfjlflkj",
     isActive: true,
     isSuperuser: false,
     fullName: null,
