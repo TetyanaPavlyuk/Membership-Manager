@@ -4,6 +4,6 @@ export * from "./Layout";
 export * from "./Sidebar";
 export * from "./UniversalModal";
 export * from "./LanguageSelector";
-export * from "./HealthCheckComponent";
-export * from "./Logout";
 export * from "./PrivateRoute";
+export * from "./NavLinks";
+export * from "./PaginationComponent";

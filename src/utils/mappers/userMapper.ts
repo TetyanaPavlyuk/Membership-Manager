@@ -1,6 +1,6 @@
 import { UserAPIResponse, User } from "../../types";
 
-export const mapUserFromAPI = (apiUser: UserAPIResponse): User => ({
+export const userMapper = (apiUser: UserAPIResponse): User => ({
   id: apiUser.id,
   email: apiUser.email,
   isActive: apiUser.is_active,

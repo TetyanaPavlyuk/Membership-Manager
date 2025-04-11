@@ -1,6 +1,8 @@
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  Alert,
+  Box,
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
@@ -8,91 +10,82 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Box,
-  CircularProgress,
-  Alert,
 } from "@mui/material";
 
-import { useAppDispatch, useAppSelector } from "../../store";
-import { setUsers, setLoading, setError } from "../../features";
-import { usersData } from "../../mocks";
+import { useUsersList } from "../../hooks";
+import { PaginationComponent } from "../../components";
 
 import "./UsersList.css";
 
-const usersListFields = ["id", "email", "fullName"];
+const usersListFields = ["email", "fullName"];
 
 export const UsersList = () => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
-  const { users, loading, error } = useAppSelector((state) => state.users);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        dispatch(setLoading(true));
-        dispatch(setUsers(usersData));
-        dispatch(setLoading(false));
-      } catch (err) {
-        if (err instanceof Error) {
-          dispatch(setError(err.message));
-        } else {
-          dispatch(setError(t("wrong")));
-        }
-      }
-    };
-    fetchUsers();
-  }, [dispatch]);
-
-  if (loading) {
-    return (
-      <Box className="usersStatusContainer">
-        <CircularProgress />
-      </Box>
-    );
-  }
-  if (error) {
-    return (
-      <Box className="usersStatusContainer">
-        <Alert severity="error">{error}</Alert>
-      </Box>
-    );
-  }
+  const {
+    page,
+    size,
+    users,
+    pagesCount,
+    isLoading,
+    errorMessage,
+    handleGetUsers,
+  } = useUsersList();
 
   return (
-    <Box>
-      <Typography variant="h3">{t("usersList")}</Typography>
-      <TableContainer className="usersTableContainer">
-        <Table>
-          <TableHead className="usersTableHead">
-            <TableRow>
-              {usersListFields.map((field) => (
-                <TableCell
-                  key={field}
-                  align="center"
-                  className="usersTableHeadCell"
-                >
-                  {t(field)}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody className="usersTableBody">
-            {users.map((user) => (
-              <TableRow key={user.id}>
-                <TableCell align="center" className="usersTableBodyCell">
-                  {user.id}
-                </TableCell>
-                <TableCell className="usersTableBodyCell">
-                  {user.email}
-                </TableCell>
-                <TableCell className="usersTableBodyCell">
-                  {user.fullName ?? t("nA")}
-                </TableCell>
+    <Box className="usersPageContainer">
+      <Box className="usersContainer">
+        <Typography variant="h3">{t("user.list")}</Typography>
+
+        {isLoading && (
+          <Box className="userStatusContainer">
+            <CircularProgress />
+          </Box>
+        )}
+
+        {errorMessage && (
+          <Box className="usersStatusContainer">
+            <Alert severity="error">{errorMessage}</Alert>
+          </Box>
+        )}
+
+        <TableContainer className="usersTableContainer">
+          <Table>
+            <TableHead className="usersTableHead">
+              <TableRow>
+                {usersListFields.map((field) => (
+                  <TableCell
+                    key={field}
+                    align="center"
+                    className="usersTableHeadCell"
+                  >
+                    {t(field)}
+                  </TableCell>
+                ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody className="usersTableBody">
+              {users.map((user) => (
+                <TableRow key={user.email}>
+                  <TableCell className="usersTableBodyCell">
+                    {user.email}
+                  </TableCell>
+                  <TableCell className="usersTableBodyCell">
+                    {user.full_name ?? t("nA")}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+      <Box className="paginationContainer">
+        <PaginationComponent
+          page={page}
+          size={size}
+          pagesCount={pagesCount}
+          onChange={handleGetUsers}
+        />
+      </Box>
     </Box>
   );
 };

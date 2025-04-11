@@ -1,3 +1,4 @@
-export * from "../../types/authTypes.ts";
 export * from "./authSlice";
-export * from "./authThunk";
+export * from "./loginThunk";
+export * from "./registrationThunk";
+export * from "./getMeThunk.ts";

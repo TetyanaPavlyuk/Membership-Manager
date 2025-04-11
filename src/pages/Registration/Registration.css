@@ -1,18 +1,11 @@
-.registrationContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-}
-
-.registrationForm {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
+.registrationContainer,
+.registrationForm,
 .successBox {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.registrationContainer {
+  padding: 20px;
 }

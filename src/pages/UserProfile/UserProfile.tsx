@@ -3,5 +3,5 @@ import { Typography } from "@mui/material";
 
 export const UserProfile = () => {
   const { t } = useTranslation();
-  return <Typography variant="h3">{t("userProfile")}</Typography>;
+  return <Typography variant="h3">{t("user.profile")}</Typography>;
 };

@@ -1,44 +1,65 @@
 {
-  "about": "About",
-  "aboutPage": "About Page",
-  "checkHealth": "Check server connection",
-  "checkHealthFailed": "Check health Failed",
-  "checkingState": "Checking if the server is up and running...",
-  "companies": "Companies",
-  "companiesList": "Companies List",
-  "companyName": "Meduzzen",
-  "companyProfile": "Company Profile",
-  "companyYear": "Meduzzen, 2025",
+  "about": {
+    "label": "About",
+    "page": "About Page"
+  },
+
+  "company": {
+    "companies": "Companies",
+    "list": "Companies List",
+    "profile": "Company Profile"
+  },
+
   "email": "Email",
-  "failedFetchUser": "Failed to fetch user data",
   "fullName": "Full Name",
   "goHome": "Go Home",
   "greeting": "Nice to see you!",
   "home": "Home",
   "id": "ID",
   "language": "Language",
-  "login": "Login",
-  "loginFailed": "Login Failed",
-  "loginWithSocial": "Login with social",
-  "logout": "Logout",
-  "logoutFailed": "Logout Failed",
+
+  "login": {
+    "label": "Login",
+    "failed": "Login Failed",
+    "withSocial": "Login with social"
+  },
+
+  "logout": {
+    "label": "Logout",
+    "failed": "Logout Failed"
+  },
+
   "nA": "N/A",
-  "notFoundAccessToken": "No access token found!",
-  "notFoundPage": "404 - Page Not Found",
-  "notFoundUser": "No user found!",
+
+  "notFound": {
+    "auth0Token": "No Auth0 token found!",
+    "page": "404 - Page Not Found",
+    "notFound.user": "No user found!"
+  },
+
+  "owner": {
+    "name": "Meduzzen",
+    "nameYear": "Meduzzen, 2025"
+  },
+
   "password": "Password",
-  "registration": "Registration",
-  "registrationFailed": "Registration Failed",
-  "registrationSuccess": "Registration successful!",
-  "serverDown": "Server is Down!",
-  "serverDownText": "There was an issue connecting to the server.",
-  "serverUp": "Server is Up!",
-  "serverUpText": "The server is running smoothly.",
+
+  "registration": {
+    "label": "Registration",
+    "failed": "Registration Failed",
+    "success": "Registration successful!"
+  },
+
   "unknownError": "Unknown error occurred",
-  "userInfoFailed": "Failed to fetch user data",
-  "userProfile": "User Profile",
-  "users": "Users",
-  "usersList": "Users List",
+
+  "user": {
+    "getFailed": "Failed to fetch user data",
+    "profile": "User Profile",
+    "users": "Users",
+    "list": "Users List",
+    "listFailed": "Failed to get Users List"
+  },
+
   "welcome": "Welcome",
   "wrong": "Something went wrong"
 }

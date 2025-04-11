@@ -11,9 +11,9 @@ export const NotFound = () => {
   return (
     <Container className="notFoundContainer">
       <Typography variant="h3" color="error">
-        {t("notFoundPage")}
+        {t("notFound.page")}
       </Typography>
-      <Typography variant="body1">{t("notFoundPage")}</Typography>
+      <Typography variant="body1">{t("notFound.page")}</Typography>
       <Button variant="contained" component={Link} to={RoutesEnum.HOME}>
         {t("goHome")}
       </Button>

@@ -5,6 +5,5 @@ export enum RoutesEnum {
   COMPANIES = "/companies",
   REGISTRATION = "/registration",
   LOGIN = "/login",
-  LOGIN_SOCIAL = "/login-social",
-  DASHBOARD = "/dashboard",
+  ME = "/me",
 }

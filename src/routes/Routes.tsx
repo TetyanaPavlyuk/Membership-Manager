@@ -19,6 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: RoutesEnum.HOME,
@@ -30,21 +31,33 @@ const router = createBrowserRouter([
       },
       {
         path: RoutesEnum.USERS,
-        element: <UsersList />,
+        element: <PrivateRoute />,
         children: [
           {
-            path: `${RoutesEnum.USERS}/:id`,
-            element: <UserProfile />,
+            path: RoutesEnum.USERS,
+            element: <UsersList />,
+            children: [
+              {
+                path: `${RoutesEnum.USERS}/:id`,
+                element: <UserProfile />,
+              },
+            ],
           },
         ],
       },
       {
         path: RoutesEnum.COMPANIES,
-        element: <CompaniesList />,
+        element: <PrivateRoute />,
         children: [
           {
-            path: `${RoutesEnum.COMPANIES}/:id`,
-            element: <CompanyProfile />,
+            path: RoutesEnum.COMPANIES,
+            element: <CompaniesList />,
+            children: [
+              {
+                path: `${RoutesEnum.COMPANIES}/:id`,
+                element: <CompanyProfile />,
+              },
+            ],
           },
         ],
       },
@@ -57,14 +70,8 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: RoutesEnum.DASHBOARD,
-        element: <PrivateRoute />,
-        children: [
-          {
-            path: RoutesEnum.DASHBOARD,
-            element: <Dashboard />,
-          },
-        ],
+        path: RoutesEnum.ME,
+        element: <Dashboard />,
       },
     ],
   },

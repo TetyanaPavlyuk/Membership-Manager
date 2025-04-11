@@ -1,2 +1,2 @@
 export * from "./userMapper";
-export * from "./authMapper";
+export * from "./loginResponseMapper.ts";

@@ -1,0 +1,17 @@
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+.prevButton,
+.nextButton {
+  height: 30px;
+}
+
+.inputField .MuiInputBase-root {
+  height: 40px;
+  width: 100px;
+}

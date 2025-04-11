@@ -1,1 +1,2 @@
-export * from "./usersSlice.ts";
+export * from "./usersSlice";
+export * from "./getUsersThunk";

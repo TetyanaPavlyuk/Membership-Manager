@@ -3,5 +3,5 @@ import { Typography } from "@mui/material";
 
 export const About = () => {
   const { t } = useTranslation();
-  return <Typography variant="h3">{t("aboutPage")}</Typography>;
+  return <Typography variant="h3">{t("about.page")}</Typography>;
 };
