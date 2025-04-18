@@ -1,18 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { loginAPI } from "../../api";
-import { RoutesEnum } from "../../enum";
+import { LoginRequest, LoginResponse } from "../../types";
 
-export const loginThunk = createAsyncThunk(
-  RoutesEnum.LOGIN,
-  async (
-    { email, password }: { email: string; password: string },
-    { rejectWithValue },
-  ) => {
-    try {
-      return await loginAPI(email, password);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
+export const loginThunk = createAsyncThunk<
+  LoginResponse,
+  LoginRequest,
+  { rejectValue: string }
+>("/login", async (loginData, { rejectWithValue }) => {
+  try {
+    return await loginAPI(loginData);
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});

@@ -1,4 +1,5 @@
 import { Auth0Provider } from "@auth0/auth0-react";
+import { ToastContainer, Slide } from "react-toastify";
 
 import { AppRoutes } from "./routes";
 
@@ -18,6 +19,12 @@ export const App = () => {
     >
       <CssBaseline />
       <AppRoutes />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        theme="light"
+        transition={Slide}
+      />
     </Auth0Provider>
   );
 };

@@ -6,10 +6,11 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+
 import { LanguagesEnum } from "../../enum";
 
 import "./LanguageSelector.css";
-import { useEffect } from "react";
 
 export const LanguageSelector = () => {
   const { t, i18n } = useTranslation();

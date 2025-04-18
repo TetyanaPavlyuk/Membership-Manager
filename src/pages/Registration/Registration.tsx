@@ -4,39 +4,58 @@ import {
   CircularProgress,
   TextField,
   Typography,
-  Alert,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+
+import { RoutesEnum } from "../../enum";
+import { useAppDispatch } from "../../store";
+import { FormEvent, useState } from "react";
+import { registrationThunk } from "../../features";
+import { authValidation, AuthValidationErrors } from "../../validations";
 
 import "./Registration.css";
-import { Link } from "react-router-dom";
-import { RoutesEnum } from "../../enum";
-import { useRegistration } from "../../hooks";
 
 export const Registration = () => {
   const { t } = useTranslation();
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    fullName,
-    setFullName,
-    user,
-    isLoading,
-    errorMessage,
-    handleRegistration,
-  } = useRegistration();
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [fullName, setFullName] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [errors, setErrors] = useState<AuthValidationErrors>({});
+
+  const handleRegistration = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const validationErrors = authValidation(email, password, t);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
+
+    setIsLoading(true);
+    const result = await dispatch(
+      registrationThunk({ email, password, full_name: fullName }),
+    );
+    if (registrationThunk.fulfilled.match(result)) {
+      setIsRegistered(true);
+    }
+    if (registrationThunk.rejected.match(result)) {
+      setIsRegistered(false);
+      toast.error(result.payload);
+    }
+    setIsLoading(false);
+  };
 
   return (
     <Box className="registrationContainer">
       <Typography variant="h5">{t("registration.label")}</Typography>
-
-      {errorMessage && (
-        <Box className="errorBox">
-          <Alert severity="error">{errorMessage}</Alert>
-        </Box>
-      )}
 
       {isLoading && (
         <Box className="loadingBox">
@@ -44,19 +63,23 @@ export const Registration = () => {
         </Box>
       )}
 
-      {!errorMessage && !isLoading && !user && (
+      {!isLoading && !isRegistered && (
         <form className="registrationForm" onSubmit={handleRegistration}>
           <TextField
             label={t("email")}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            error={!!errors.email}
+            helperText={errors.email}
           />
           <TextField
             label={t("password")}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            error={!!errors.password}
+            helperText={errors.password}
           />
           <TextField
             label={t("fullName")}
@@ -70,10 +93,10 @@ export const Registration = () => {
         </form>
       )}
 
-      {!errorMessage && !isLoading && user && (
+      {!isLoading && isRegistered && (
         <Box className="successBox">
           <Typography>{`
-            ${t("registration.success")} ${t("welcome")}, ${user?.email}!
+            ${t("registration.success")}
           `}</Typography>
           <Button variant="contained" component={Link} to={RoutesEnum.LOGIN}>
             {t("login.label")}

@@ -1,20 +1,17 @@
 import { axiosInstance } from "../index.ts";
-import { RegistrationAPIResponse } from "../../types";
-import { APIRoutesEnum } from "../../enum";
-import { formatI18nError, userMapper } from "../../utils";
+import { formatI18nError } from "../../utils";
+import { RegistrationRequest } from "../../types";
 
 export const registrationAPI = async (
-  email: string,
-  password: string,
-  fullName: string | null = null,
+  registrationData: RegistrationRequest,
 ) => {
   try {
-    const response = await axiosInstance.post<RegistrationAPIResponse>(
-      APIRoutesEnum.REGISTRATION,
-      { email, password, full_name: fullName },
+    const response = await axiosInstance.post(
+      "/registration",
+      registrationData,
     );
-    return userMapper(response.data.user);
+    return response.data;
   } catch (error) {
-    throw formatI18nError("registration.failed", error);
+    throw new Error(formatI18nError("registration.failed", error));
   }
 };

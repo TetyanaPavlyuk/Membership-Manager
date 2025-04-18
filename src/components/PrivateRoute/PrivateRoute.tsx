@@ -1,22 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+
 import { RoutesEnum } from "../../enum";
 import { useAuth } from "../../hooks";
-import { Alert, CircularProgress } from "@mui/material";
 
 export const PrivateRoute = () => {
-  const { user, isLoading, errorMessage } = useAuth();
+  const { user, isLoading, authInitialize } = useAuth();
 
-  if (isLoading) {
+  if (isLoading || !authInitialize) {
     return <CircularProgress />;
   }
-
-  if (errorMessage) {
-    return <Alert severity="error">{errorMessage}</Alert>;
-  }
-
-  if (!user) {
-    return <Navigate to={RoutesEnum.LOGIN} replace />;
-  }
-
-  return <Outlet />;
+  return user ? <Outlet /> : <Navigate to={RoutesEnum.LOGIN} replace />;
 };

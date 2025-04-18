@@ -1,20 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { registrationAPI } from "../../api";
-import { RoutesEnum } from "../../enum";
+import { RegistrationRequest } from "../../types";
 
-export const registrationThunk = createAsyncThunk(
-  RoutesEnum.REGISTRATION,
-  async (
-    {
-      email,
-      password,
-      fullName,
-    }: { email: string; password: string; fullName: string | null },
-    { rejectWithValue },
-  ) => {
+export const registrationThunk = createAsyncThunk<
+  string,
+  RegistrationRequest,
+  { rejectValue: string }
+>(
+  "/registration",
+  async (registrationData: RegistrationRequest, { rejectWithValue }) => {
     try {
-      return await registrationAPI(email, password, fullName);
+      return await registrationAPI(registrationData);
     } catch (error) {
       return rejectWithValue(error.message);
     }

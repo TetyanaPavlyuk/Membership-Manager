@@ -30,38 +30,6 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: RoutesEnum.USERS,
-        element: <PrivateRoute />,
-        children: [
-          {
-            path: RoutesEnum.USERS,
-            element: <UsersList />,
-            children: [
-              {
-                path: `${RoutesEnum.USERS}/:id`,
-                element: <UserProfile />,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        path: RoutesEnum.COMPANIES,
-        element: <PrivateRoute />,
-        children: [
-          {
-            path: RoutesEnum.COMPANIES,
-            element: <CompaniesList />,
-            children: [
-              {
-                path: `${RoutesEnum.COMPANIES}/:id`,
-                element: <CompanyProfile />,
-              },
-            ],
-          },
-        ],
-      },
-      {
         path: RoutesEnum.REGISTRATION,
         element: <Registration />,
       },
@@ -70,14 +38,31 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: RoutesEnum.ME,
-        element: <Dashboard />,
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: RoutesEnum.USERS,
+            element: <UsersList />,
+          },
+          {
+            path: `${RoutesEnum.USERS}/:id`,
+            element: <UserProfile />,
+          },
+          {
+            path: RoutesEnum.COMPANIES,
+            element: <CompaniesList />,
+          },
+          {
+            path: `${RoutesEnum.COMPANIES}/:id`,
+            element: <CompanyProfile />,
+          },
+          {
+            path: RoutesEnum.ME,
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
-  },
-  {
-    path: "*",
-    element: <NotFound />,
   },
 ]);
 

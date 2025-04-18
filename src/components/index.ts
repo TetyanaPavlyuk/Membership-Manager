@@ -7,3 +7,4 @@ export * from "./LanguageSelector";
 export * from "./PrivateRoute";
 export * from "./NavLinks";
 export * from "./PaginationComponent";
+export * from "./LoginSocialComponent";

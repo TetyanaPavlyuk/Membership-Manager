@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getMeAPI } from "../../api";
-import { RoutesEnum } from "../../enum";
+import { User } from "../../types";
 
-export const getMeThunk = createAsyncThunk(
-  RoutesEnum.ME,
+export const getMeThunk = createAsyncThunk<User, void, { rejectValue: string }>(
+  "/getMe",
   async (_, { rejectWithValue }) => {
     try {
       return await getMeAPI();

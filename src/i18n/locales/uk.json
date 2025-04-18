@@ -10,7 +10,9 @@
     "profile": "Профіль компанії"
   },
 
+  "countPerPage": "Кількість на сторінку",
   "email": "Електронна пошта",
+  "from": "з",
   "fullName": "Імʼя",
   "goHome": "На головну",
   "greeting": "Раді вас вітати!",
@@ -42,6 +44,7 @@
     "nameYear": "Meduzzen, 2025"
   },
 
+  "page": "Сторінка",
   "password": "Пароль",
 
   "registration": {
@@ -58,6 +61,17 @@
     "users": "Користувачі",
     "list": "Список користувачів",
     "listFailed": "Помилка отримання списку користувачів"
+  },
+
+  "validation": {
+    "emailRequired": "Email обов'язковий",
+    "emailInvalid": "Невірний формат email",
+    "passwordRequired": "Пароль обов'язковий",
+    "passwordTooShort": "Пароль має містити щонайменше 8 символів",
+    "passwordUppercase": "Пароль має містити хоча б одну велику літеру",
+    "passwordLowercase": "Пароль має містити хоча б одну малу літеру",
+    "passwordDigit": "Пароль має містити хоча б одну цифру",
+    "passwordSpecialChar": "Пароль має містити хоча б один спеціальний символ"
   },
 
   "welcome": "Вітаємо",

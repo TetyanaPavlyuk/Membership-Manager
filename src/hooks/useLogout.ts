@@ -1,14 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import { useAppDispatch } from "../../store";
-import { clearUser, setAuthError, setAuthLoading } from "../../features";
-import { RoutesEnum } from "../../enum";
-import { formatI18nError } from "../../utils";
+import { useAppDispatch } from "../store";
+import { clearUser, setAuthLoading } from "../features";
+import { RoutesEnum } from "../enum";
+import { formatI18nError } from "../utils";
 
 export const useLogout = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { logout: auth0Logout } = useAuth0();
 
   const logout = () => {
@@ -18,13 +17,12 @@ export const useLogout = () => {
       localStorage.removeItem("access_token");
       auth0Logout({
         logoutParams: {
-          returnTo: window.location.origin + RoutesEnum.LOGIN,
+          returnTo: import.meta.env.VITE_BASE_URL + RoutesEnum.LOGIN,
         },
       });
-      navigate(RoutesEnum.LOGIN);
     } catch (error) {
       const formattedError = formatI18nError("logout.failed", error);
-      dispatch(setAuthError(formattedError.message));
+      toast.error(formattedError);
     } finally {
       dispatch(setAuthLoading(false));
     }

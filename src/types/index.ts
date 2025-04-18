@@ -1,3 +1,2 @@
-export * from "./apiTypes";
-export * from "./userTypes.ts";
-export * from "./authTypes.ts";
+export * from "./userTypes";
+export * from "./authTypes";

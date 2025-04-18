@@ -1,13 +1,12 @@
 import { axiosInstance } from "../index.ts";
-import { formatI18nError, userMapper } from "../../utils";
-import { UserAPIResponse } from "../../types";
-import { APIRoutesEnum } from "../../enum";
+import { formatI18nError } from "../../utils";
+import { User } from "../../types";
 
 export const getMeAPI = async () => {
   try {
-    const response = await axiosInstance.get<UserAPIResponse>(APIRoutesEnum.ME);
-    return userMapper(response.data);
+    const response = await axiosInstance.get<User>("/me");
+    return response.data;
   } catch (error) {
-    throw formatI18nError("user.getFailed", error);
+    throw new Error(formatI18nError("user.getFailed", error));
   }
 };

@@ -10,7 +10,9 @@
     "profile": "Company Profile"
   },
 
+  "countPerPage": "Count per page",
   "email": "Email",
+  "from": "from",
   "fullName": "Full Name",
   "goHome": "Go Home",
   "greeting": "Nice to see you!",
@@ -42,6 +44,7 @@
     "nameYear": "Meduzzen, 2025"
   },
 
+  "page": "Page",
   "password": "Password",
 
   "registration": {
@@ -58,6 +61,17 @@
     "users": "Users",
     "list": "Users List",
     "listFailed": "Failed to get Users List"
+  },
+
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "passwordRequired": "Password is required",
+    "passwordTooShort": "Password must be at least 8 characters long",
+    "passwordUppercase": "Password must contain at least one uppercase letter",
+    "passwordLowercase": "Password must contain at least one lowercase letter",
+    "passwordDigit": "Password must contain at least one number",
+    "passwordSpecialChar": "Password must contain at least one special character"
   },
 
   "welcome": "Welcome",

@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTranslation } from "react-i18next";
+import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 import { useAppDispatch } from "../../store";
-import { getMeThunk, setAuthError, setAuthLoading } from "../../features";
+import { getMeThunk, setAuthLoading } from "../../features";
 import { RoutesEnum } from "../../enum";
 import { formatI18nError } from "../../utils";
 
-export const useLoginSocial = () => {
+export const LoginSocialComponent = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const { loginWithPopup, getAccessTokenSilently } = useAuth0();
 
   const loginSocial = async () => {
@@ -22,14 +25,19 @@ export const useLoginSocial = () => {
         throw new Error(t("notFound.auth0Token"));
       }
       localStorage.setItem("access_token", auth0Token);
-      await dispatch(getMeThunk());
+      await dispatch(getMeThunk()).unwrap();
       navigate(RoutesEnum.ME);
     } catch (error) {
       const formattedError = formatI18nError("login.failed", error);
-      dispatch(setAuthError(formattedError.message));
+      toast.error(formattedError);
     } finally {
       dispatch(setAuthLoading(false));
     }
   };
-  return loginSocial;
+
+  return (
+    <Button variant="contained" onClick={loginSocial}>
+      {t("login.withSocial")}
+    </Button>
+  );
 };

@@ -1,34 +1,24 @@
-import { Alert, Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 
 export const Dashboard = () => {
   const { t } = useTranslation();
-  const { user, isLoading, errorMessage } = useAuth();
-
-  if (isLoading) {
-    return (
-      <Box className="userStatusContainer">
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  if (errorMessage) {
-    return (
-      <Box className="userStatusContainer">
-        <Alert severity="error">{errorMessage}</Alert>
-      </Box>
-    );
-  }
+  const { user, isLoading } = useAppSelector((state) => state.auth);
 
   return (
     <Box>
+      {isLoading && (
+        <Box className="userStatusContainer">
+          <CircularProgress />
+        </Box>
+      )}
+
       {user ? (
         <Box>
+          <Typography variant="h6">{`${t("email")}: ${user.email}`}</Typography>
           <Typography variant="h6">
-            {`${t("welcome")}, ${user?.email}`}
+            {`${t("fullName")}: ${user.full_name}`}
           </Typography>
         </Box>
       ) : (

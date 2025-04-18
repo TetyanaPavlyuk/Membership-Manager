@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import {
-  Alert,
   Box,
   CircularProgress,
   Table,
@@ -11,9 +10,14 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import { useUsersList } from "../../hooks";
 import { PaginationComponent } from "../../components";
+import { useAppDispatch } from "../../store";
+import { useEffect, useState } from "react";
+import { getUsersThunk } from "../../features";
+import { UserShort } from "../../types";
 
 import "./UsersList.css";
 
@@ -21,15 +25,42 @@ const usersListFields = ["email", "fullName"];
 
 export const UsersList = () => {
   const { t } = useTranslation();
-  const {
-    page,
-    size,
-    users,
-    pagesCount,
-    isLoading,
-    errorMessage,
-    handleGetUsers,
-  } = useUsersList();
+  const dispatch = useAppDispatch();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = Number(searchParams.get("page")) || 1;
+  const limit = Number(searchParams.get("limit")) || 10;
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [users, setUsers] = useState<UserShort[]>([]);
+  const [pagesCount, setPagesCount] = useState<number>(0);
+
+  const handleGetUsers = async (page: number, limit: number) => {
+    setIsLoading(true);
+    const result = await dispatch(getUsersThunk({ page, limit }));
+    setIsLoading(false);
+
+    if (getUsersThunk.fulfilled.match(result)) {
+      const { users, pages_count } = result.payload;
+      setUsers(users);
+      setPagesCount(pages_count);
+    }
+
+    if (getUsersThunk.rejected.match(result)) {
+      setUsers([]);
+      setIsLoading(false);
+      toast.error(result.payload);
+    }
+  };
+
+  const handlePaginationChange = (newPage: number, newLimit: number) => {
+    setSearchParams({ page: String(newPage), limit: String(newLimit) });
+  };
+
+  useEffect(() => {
+    handleGetUsers(page, limit);
+  }, [page, limit]);
 
   return (
     <Box className="usersPageContainer">
@@ -39,12 +70,6 @@ export const UsersList = () => {
         {isLoading && (
           <Box className="userStatusContainer">
             <CircularProgress />
-          </Box>
-        )}
-
-        {errorMessage && (
-          <Box className="usersStatusContainer">
-            <Alert severity="error">{errorMessage}</Alert>
           </Box>
         )}
 
@@ -81,9 +106,9 @@ export const UsersList = () => {
       <Box className="paginationContainer">
         <PaginationComponent
           page={page}
-          size={size}
+          limit={limit}
           pagesCount={pagesCount}
-          onChange={handleGetUsers}
+          onChange={handlePaginationChange}
         />
       </Box>
     </Box>

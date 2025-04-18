@@ -1,12 +1,21 @@
 import { User } from "./";
 
-export interface LoginResponse {
-  accessToken: string;
-  tokenType: string;
-}
-
 export interface AuthState {
   user: User | null;
+  authInitialize: boolean;
   isLoading: boolean;
-  errorMessage: string | null;
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  access_token: string;
+  token_type: string;
+}
+
+export interface RegistrationRequest extends LoginRequest {
+  full_name: string | null;
 }

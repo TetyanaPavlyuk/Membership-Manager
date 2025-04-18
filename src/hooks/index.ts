@@ -1,2 +1,2 @@
-export * from "./authHooks";
-export * from "./usersHooks";
+export * from "./useAuth.ts";
+export * from "./useLogout.ts";
