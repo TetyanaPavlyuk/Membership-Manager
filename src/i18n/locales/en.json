@@ -3,13 +3,11 @@
     "label": "About",
     "page": "About Page"
   },
-
   "company": {
     "companies": "Companies",
     "list": "Companies List",
     "profile": "Company Profile"
   },
-
   "countPerPage": "Count per page",
   "email": "Email",
   "from": "from",
@@ -19,42 +17,33 @@
   "home": "Home",
   "id": "ID",
   "language": "Language",
-
   "login": {
     "label": "Login",
     "failed": "Login Failed",
     "withSocial": "Login with social"
   },
-
   "logout": {
     "label": "Logout",
     "failed": "Logout Failed"
   },
-
   "nA": "N/A",
-
   "notFound": {
     "auth0Token": "No Auth0 token found!",
     "page": "404 - Page Not Found",
     "notFound.user": "No user found!"
   },
-
   "owner": {
     "name": "Meduzzen",
     "nameYear": "Meduzzen, 2025"
   },
-
   "page": "Page",
   "password": "Password",
-
   "registration": {
     "label": "Registration",
     "failed": "Registration Failed",
     "success": "Registration successful!"
   },
-
   "unknownError": "Unknown error occurred",
-
   "user": {
     "getFailed": "Failed to fetch user data",
     "profile": "User Profile",
@@ -62,18 +51,12 @@
     "list": "Users List",
     "listFailed": "Failed to get Users List"
   },
-
   "validation": {
     "emailRequired": "Email is required",
     "emailInvalid": "Invalid email format",
     "passwordRequired": "Password is required",
-    "passwordTooShort": "Password must be at least 8 characters long",
-    "passwordUppercase": "Password must contain at least one uppercase letter",
-    "passwordLowercase": "Password must contain at least one lowercase letter",
-    "passwordDigit": "Password must contain at least one number",
-    "passwordSpecialChar": "Password must contain at least one special character"
+    "passwordRequirements": "Password must be at least 8 characters long and include uppercase, lowercase, a digit, and a special character."
   },
-
   "welcome": "Welcome",
   "wrong": "Something went wrong"
 }

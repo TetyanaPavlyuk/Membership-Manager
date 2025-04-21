@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 
 import { useAppDispatch } from "../../store";
-import { getMeThunk, setAuthLoading } from "../../features";
+import { setAuthLoading } from "../../features";
 import { RoutesEnum } from "../../enum";
 import { formatI18nError } from "../../utils";
 
@@ -25,7 +25,6 @@ export const LoginSocialComponent = () => {
         throw new Error(t("notFound.auth0Token"));
       }
       localStorage.setItem("access_token", auth0Token);
-      await dispatch(getMeThunk()).unwrap();
       navigate(RoutesEnum.ME);
     } catch (error) {
       const formattedError = formatI18nError("login.failed", error);

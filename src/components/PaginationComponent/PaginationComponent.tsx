@@ -32,17 +32,22 @@ export const PaginationComponent = ({
   };
 
   const handleChangePage = (e: ChangeEvent<HTMLInputElement>) => {
-    const newPage = Number(e.target.value);
-    if (1 <= newPage && newPage <= pagesCount) {
-      onChange(newPage, limit);
+    let newPage = Number(e.target.value);
+    if (1 > newPage) {
+      newPage = 1;
     }
+    if (newPage > pagesCount) {
+      newPage = pagesCount;
+    }
+    onChange(newPage, limit);
   };
 
   const handleChangeLimit = (e: ChangeEvent<HTMLInputElement>) => {
-    const newLimit = Number(e.target.value);
-    if (1 <= newLimit) {
-      onChange(page, newLimit);
+    let newLimit = Number(e.target.value);
+    if (1 > newLimit) {
+      newLimit = 1;
     }
+    onChange(page, newLimit);
   };
 
   return (

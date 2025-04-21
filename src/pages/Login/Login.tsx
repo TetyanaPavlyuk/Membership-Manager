@@ -6,48 +6,49 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
-import { toast } from "react-toastify";
 
-import { useAppDispatch, useAppSelector } from "../../store";
-import { loginThunk } from "../../features";
-import { RoutesEnum } from "../../enum";
+import { useAppSelector } from "../../store";
 import { LoginSocialComponent } from "../../components";
-import { authValidation, AuthValidationErrors } from "../../validations";
+import {
+  emailValidation,
+  EmailValidationErrors,
+  passwordValidation,
+  PasswordValidationErrors,
+} from "../../validations";
+import { useLogin } from "../../hooks";
 
 import "./Login.css";
 
 export const Login = () => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const { login } = useLogin();
 
   const { user, isLoading } = useAppSelector((state) => state.auth);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [errors, setErrors] = useState<AuthValidationErrors>({});
+  const [emailErrors, setEmailErrors] = useState<EmailValidationErrors>({});
+  const [passwordErrors, setPasswordErrors] =
+    useState<PasswordValidationErrors>({});
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
-    const validationErrors = authValidation(email, password, t);
+    const emailValidationResult = emailValidation(email, t);
+    const passwordValidationResult = passwordValidation(password, t);
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+    setEmailErrors(emailValidationResult);
+    setPasswordErrors(passwordValidationResult);
+
+    if (
+      Object.keys(emailValidationResult).length > 0 ||
+      Object.keys(passwordValidationResult).length > 0
+    ) {
       return;
     }
 
-    setErrors({});
-
-    const result = await dispatch(loginThunk({ email, password }));
-    if (loginThunk.fulfilled.match(result)) {
-      navigate(RoutesEnum.ME);
-    }
-    if (loginThunk.rejected.match(result)) {
-      toast.error(result.payload);
-    }
+    await login(email, password);
   };
 
   return (
@@ -69,8 +70,8 @@ export const Login = () => {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              error={!!errors.email}
-              helperText={errors.email}
+              error={!!emailErrors.email}
+              helperText={emailErrors.email}
             />
             <TextField
               label={t("password")}
@@ -78,8 +79,8 @@ export const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              error={!!errors.password}
-              helperText={errors.password}
+              error={!!passwordErrors.password}
+              helperText={passwordErrors.password}
             />
             <Button variant="contained" type="submit">
               {t("login.label")}

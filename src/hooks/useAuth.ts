@@ -18,7 +18,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const getUser = async () => {
-      if (token && !user) {
+      if (token && !user && !isLoading) {
         const result = await dispatch(getMeThunk());
         if (getMeThunk.rejected.match(result)) {
           toast.error(result.payload);
