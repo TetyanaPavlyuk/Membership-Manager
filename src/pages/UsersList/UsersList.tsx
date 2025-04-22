@@ -39,12 +39,12 @@ export const UsersList = () => {
   const handleGetUsers = async (page: number, limit: number) => {
     setIsLoading(true);
     const result = await dispatch(getUsersThunk({ page, limit }));
-    setIsLoading(false);
 
     if (getUsersThunk.fulfilled.match(result)) {
       const { users, pages_count } = result.payload;
       setUsers(users);
       setPagesCount(pages_count);
+      setIsLoading(false);
     }
 
     if (getUsersThunk.rejected.match(result)) {

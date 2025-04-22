@@ -11,12 +11,7 @@ import { toast } from "react-toastify";
 import { useAppDispatch } from "../../store";
 import { FormEvent, useState } from "react";
 import { registrationThunk } from "../../features";
-import {
-  emailValidation,
-  EmailValidationErrors,
-  passwordValidation,
-  PasswordValidationErrors,
-} from "../../validations";
+import { emailValidation, passwordValidation } from "../../validations";
 import { useLogin } from "../../hooks";
 
 import "./Registration.css";
@@ -26,36 +21,61 @@ export const Registration = () => {
   const dispatch = useAppDispatch();
   const { login } = useLogin();
 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [fullName, setFullName] = useState<string | null>(null);
+  const [registrationData, setRegistrationData] = useState<{
+    email: string;
+    password: string;
+    fullName: string | null;
+  }>({
+    email: "",
+    password: "",
+    fullName: null,
+  });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [emailErrors, setEmailErrors] = useState<EmailValidationErrors>({});
-  const [passwordErrors, setPasswordErrors] =
-    useState<PasswordValidationErrors>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {},
+  );
 
   const handleRegistration = async (e: FormEvent) => {
     e.preventDefault();
 
-    const emailValidationResult = emailValidation(email, t);
-    const passwordValidationResult = passwordValidation(password, t);
+    const error: { email?: string; password?: string } = {};
 
-    setEmailErrors(emailValidationResult);
-    setPasswordErrors(passwordValidationResult);
+    if (!registrationData.email) {
+      error.email = t("validation.emailRequired");
+    } else {
+      const emailValidationResult = emailValidation(registrationData.email, t);
+      if (emailValidationResult) {
+        error.email = emailValidationResult;
+      }
+    }
 
-    if (
-      Object.keys(emailValidationResult).length > 0 ||
-      Object.keys(passwordValidationResult).length > 0
-    ) {
+    if (!registrationData.password) {
+      error.password = t("validation.passwordRequired");
+    } else {
+      const passwordValidationResult = passwordValidation(
+        registrationData.password,
+        t,
+      );
+      if (passwordValidationResult) {
+        error.password = passwordValidationResult;
+      }
+    }
+
+    if (Object.keys(error).length > 0) {
+      setErrors(error);
       return;
     }
 
     setIsLoading(true);
     const result = await dispatch(
-      registrationThunk({ email, password, full_name: fullName }),
+      registrationThunk({
+        email: registrationData.email,
+        password: registrationData.password,
+        full_name: registrationData.fullName,
+      }),
     );
     if (registrationThunk.fulfilled.match(result)) {
-      await login(email, password);
+      await login(registrationData.email, registrationData.password);
     }
     if (registrationThunk.rejected.match(result)) {
       toast.error(result.payload);
@@ -77,24 +97,42 @@ export const Registration = () => {
         <TextField
           label={t("email")}
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          error={!!emailErrors.email}
-          helperText={emailErrors.email}
+          name="email"
+          value={registrationData.email}
+          onChange={(e) =>
+            setRegistrationData((prev) => ({
+              ...prev,
+              [e.target.name]: e.target.value,
+            }))
+          }
+          error={!!errors.email}
+          helperText={errors.email}
         />
         <TextField
           label={t("password")}
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          error={!!passwordErrors.password}
-          helperText={passwordErrors.password}
+          name={"password"}
+          value={registrationData.password}
+          onChange={(e) =>
+            setRegistrationData((prev) => ({
+              ...prev,
+              [e.target.name]: e.target.value,
+            }))
+          }
+          error={!!errors.password}
+          helperText={errors.password}
         />
         <TextField
           label={t("fullName")}
           type="text"
-          value={fullName || ""}
-          onChange={(e) => setFullName(e.target.value)}
+          name="fullName"
+          value={registrationData.fullName || ""}
+          onChange={(e) =>
+            setRegistrationData((prev) => ({
+              ...prev,
+              [e.target.name]: e.target.value,
+            }))
+          }
         />
         <Button variant="contained" type="submit">
           {t("registration.label")}

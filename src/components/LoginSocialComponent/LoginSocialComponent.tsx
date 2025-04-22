@@ -4,21 +4,17 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 
-import { useAppDispatch } from "../../store";
-import { setAuthLoading } from "../../features";
 import { RoutesEnum } from "../../enum";
 import { formatI18nError } from "../../utils";
 
 export const LoginSocialComponent = () => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { loginWithPopup, getAccessTokenSilently } = useAuth0();
 
   const loginSocial = async () => {
     try {
-      dispatch(setAuthLoading(true));
       await loginWithPopup();
       const auth0Token = await getAccessTokenSilently();
       if (!auth0Token) {
@@ -29,8 +25,6 @@ export const LoginSocialComponent = () => {
     } catch (error) {
       const formattedError = formatI18nError("login.failed", error);
       toast.error(formattedError);
-    } finally {
-      dispatch(setAuthLoading(false));
     }
   };
 

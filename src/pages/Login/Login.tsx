@@ -8,14 +8,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { FormEvent, useState } from "react";
 
-import { useAppSelector } from "../../store";
 import { LoginSocialComponent } from "../../components";
-import {
-  emailValidation,
-  EmailValidationErrors,
-  passwordValidation,
-  PasswordValidationErrors,
-} from "../../validations";
+import { emailValidation, passwordValidation } from "../../validations";
 import { useLogin } from "../../hooks";
 
 import "./Login.css";
@@ -24,31 +18,49 @@ export const Login = () => {
   const { t } = useTranslation();
   const { login } = useLogin();
 
-  const { user, isLoading } = useAppSelector((state) => state.auth);
-
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [emailErrors, setEmailErrors] = useState<EmailValidationErrors>({});
-  const [passwordErrors, setPasswordErrors] =
-    useState<PasswordValidationErrors>({});
+  const [loginData, setLoginData] = useState<{
+    email: string;
+    password: string;
+  }>({ email: "", password: "" });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {},
+  );
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
-    const emailValidationResult = emailValidation(email, t);
-    const passwordValidationResult = passwordValidation(password, t);
+    const error: { email?: string; password?: string } = {};
 
-    setEmailErrors(emailValidationResult);
-    setPasswordErrors(passwordValidationResult);
+    if (!loginData.email) {
+      error.email = t("validation.emailRequired");
+    } else {
+      const emailValidationResult = emailValidation(loginData.email, t);
+      if (emailValidationResult) {
+        error.email = emailValidationResult;
+      }
+    }
 
-    if (
-      Object.keys(emailValidationResult).length > 0 ||
-      Object.keys(passwordValidationResult).length > 0
-    ) {
+    if (!loginData.password) {
+      error.password = t("validation.passwordRequired");
+    } else {
+      const passwordValidationResult = passwordValidation(
+        loginData.password,
+        t,
+      );
+      if (passwordValidationResult) {
+        error.password = passwordValidationResult;
+      }
+    }
+
+    if (Object.keys(error).length > 0) {
+      setErrors(error);
       return;
     }
 
-    await login(email, password);
+    setIsLoading(true);
+    await login(loginData.email, loginData.password);
+    setIsLoading(false);
   };
 
   return (
@@ -61,34 +73,44 @@ export const Login = () => {
         </Box>
       )}
 
-      {!isLoading && !user && (
-        <Box className="loginBox">
-          <form className="loginForm" onSubmit={handleLogin}>
-            <TextField
-              label={t("email")}
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              error={!!emailErrors.email}
-              helperText={emailErrors.email}
-            />
-            <TextField
-              label={t("password")}
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              error={!!passwordErrors.password}
-              helperText={passwordErrors.password}
-            />
-            <Button variant="contained" type="submit">
-              {t("login.label")}
-            </Button>
-          </form>
-          <LoginSocialComponent />
-        </Box>
-      )}
+      <Box className="loginBox">
+        <form className="loginForm" onSubmit={handleLogin}>
+          <TextField
+            label={t("email")}
+            type="email"
+            name="email"
+            autoComplete="email"
+            value={loginData.email}
+            onChange={(e) =>
+              setLoginData((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
+            error={!!errors.email}
+            helperText={errors.email}
+          />
+          <TextField
+            label={t("password")}
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            value={loginData.password}
+            onChange={(e) =>
+              setLoginData((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
+            error={!!errors.password}
+            helperText={errors.password}
+          />
+          <Button variant="contained" type="submit">
+            {t("login.label")}
+          </Button>
+        </form>
+        <LoginSocialComponent />
+      </Box>
     </Box>
   );
 };

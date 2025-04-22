@@ -5,9 +5,9 @@ import { RoutesEnum } from "../../enum";
 import { useAuth } from "../../hooks";
 
 export const PrivateRoute = () => {
-  const { user, isLoading, authInitialize } = useAuth();
+  const { user, isLoading } = useAuth();
 
-  if (isLoading || !authInitialize) {
+  if (isLoading) {
     return <CircularProgress />;
   }
   return user ? <Outlet /> : <Navigate to={RoutesEnum.LOGIN} replace />;

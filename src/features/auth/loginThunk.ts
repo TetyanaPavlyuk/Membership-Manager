@@ -9,7 +9,9 @@ export const loginThunk = createAsyncThunk<
   { rejectValue: string }
 >("/login", async (loginData, { rejectWithValue }) => {
   try {
-    return await loginAPI(loginData);
+    const response = await loginAPI(loginData);
+    localStorage.setItem("access_token", response.access_token);
+    return response;
   } catch (error) {
     return rejectWithValue(error.message);
   }

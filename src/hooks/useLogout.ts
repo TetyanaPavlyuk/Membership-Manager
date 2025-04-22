@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { toast } from "react-toastify";
 
 import { useAppDispatch } from "../store";
-import { clearUser, setAuthLoading } from "../features";
+import { clearUser } from "../features";
 import { RoutesEnum } from "../enum";
 import { formatI18nError } from "../utils";
 
@@ -12,7 +12,6 @@ export const useLogout = () => {
 
   const logout = () => {
     try {
-      dispatch(setAuthLoading(true));
       dispatch(clearUser());
       localStorage.removeItem("access_token");
       auth0Logout({
@@ -23,8 +22,6 @@ export const useLogout = () => {
     } catch (error) {
       const formattedError = formatI18nError("logout.failed", error);
       toast.error(formattedError);
-    } finally {
-      dispatch(setAuthLoading(false));
     }
   };
   return logout;
