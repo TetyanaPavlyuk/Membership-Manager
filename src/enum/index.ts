@@ -1,2 +1,2 @@
-export * from "./RoutesEnum.ts";
-export * from "./LanguagesEnum.ts";
+export * from "./LanguagesEnum";
+export * from "./RoutesEnum";

@@ -1,32 +1,71 @@
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Layout } from "../components";
+import { Layout, PrivateRoute } from "../components";
 import {
-  Home,
   About,
-  UsersList,
-  UserProfile,
   CompaniesList,
   CompanyProfile,
+  Dashboard,
+  Home,
+  Login,
   NotFound,
+  Registration,
+  UserProfile,
+  UsersList,
 } from "../pages";
 import { RoutesEnum } from "../enum";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: RoutesEnum.HOME,
+        element: <Home />,
+      },
+      {
+        path: RoutesEnum.ABOUT,
+        element: <About />,
+      },
+      {
+        path: RoutesEnum.REGISTRATION,
+        element: <Registration />,
+      },
+      {
+        path: RoutesEnum.LOGIN,
+        element: <Login />,
+      },
+      {
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: RoutesEnum.USERS,
+            element: <UsersList />,
+          },
+          {
+            path: `${RoutesEnum.USERS}/:id`,
+            element: <UserProfile />,
+          },
+          {
+            path: RoutesEnum.COMPANIES,
+            element: <CompaniesList />,
+          },
+          {
+            path: `${RoutesEnum.COMPANIES}/:id`,
+            element: <CompanyProfile />,
+          },
+          {
+            path: RoutesEnum.ME,
+            element: <Dashboard />,
+          },
+        ],
+      },
+    ],
+  },
+]);
+
 export const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path={RoutesEnum.HOME} element={<Home />} />
-        <Route path={RoutesEnum.ABOUT} element={<About />} />
-        <Route path={RoutesEnum.USERS} element={<UsersList />} />
-        <Route path={`${RoutesEnum.USERS}/:id`} element={<UserProfile />} />
-        <Route path={RoutesEnum.COMPANIES} element={<CompaniesList />} />
-        <Route
-          path={`${RoutesEnum.COMPANIES}/:id`}
-          element={<CompanyProfile />}
-        />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+  return <RouterProvider router={router} />;
 };

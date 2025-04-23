@@ -3,4 +3,7 @@ export enum RoutesEnum {
   ABOUT = "/about",
   USERS = "/users",
   COMPANIES = "/companies",
+  REGISTRATION = "/registration",
+  LOGIN = "/login",
+  ME = "/me",
 }

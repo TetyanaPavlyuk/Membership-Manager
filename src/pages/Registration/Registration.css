@@ -1,0 +1,11 @@
+.registrationContainer,
+.registrationForm,
+.successBox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.registrationContainer {
+  padding: 20px;
+}

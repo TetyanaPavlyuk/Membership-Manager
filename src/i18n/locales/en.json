@@ -1,29 +1,62 @@
 {
-  "about": "About",
-  "aboutPage": "About Page",
-  "checkHealth": "Check server connection",
-  "checkingState": "Checking if the server is up and running...",
-  "companies": "Companies",
-  "companiesList": "Companies List",
-  "companyName": "Meduzzen",
-  "companyProfile": "Company Profile",
-  "companyYear": "Meduzzen, 2025",
+  "about": {
+    "label": "About",
+    "page": "About Page"
+  },
+  "company": {
+    "companies": "Companies",
+    "list": "Companies List",
+    "profile": "Company Profile"
+  },
+  "countPerPage": "Count per page",
   "email": "Email",
+  "from": "from",
   "fullName": "Full Name",
   "goHome": "Go Home",
   "greeting": "Nice to see you!",
   "home": "Home",
   "id": "ID",
   "language": "Language",
+  "login": {
+    "label": "Login",
+    "failed": "Login Failed",
+    "withSocial": "Login with social"
+  },
+  "logout": {
+    "label": "Logout",
+    "failed": "Logout Failed"
+  },
   "nA": "N/A",
-  "notFound": "404 - Page Not Found",
-  "notFoundMessage": "Sorry, the page you are looking for does not exist.",
-  "serverDown": "Server is Down!",
-  "serverDownText": "There was an issue connecting to the server.",
-  "serverUp": "Server is Up!",
-  "serverUpText": "The server is running smoothly.",
-  "userProfile": "User Profile",
-  "users": "Users",
-  "usersList": "Users List",
+  "notFound": {
+    "auth0Token": "No Auth0 token found!",
+    "page": "404 - Page Not Found",
+    "notFound.user": "No user found!"
+  },
+  "owner": {
+    "name": "Meduzzen",
+    "nameYear": "Meduzzen, 2025"
+  },
+  "page": "Page",
+  "password": "Password",
+  "registration": {
+    "label": "Registration",
+    "failed": "Registration Failed",
+    "success": "Registration successful!"
+  },
+  "unknownError": "Unknown error occurred",
+  "user": {
+    "getFailed": "Failed to fetch user data",
+    "profile": "User Profile",
+    "users": "Users",
+    "list": "Users List",
+    "listFailed": "Failed to get Users List"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "passwordRequired": "Password is required",
+    "passwordRequirements": "Password must be at least 8 characters long and include uppercase, lowercase, a digit, and a special character."
+  },
+  "welcome": "Welcome",
   "wrong": "Something went wrong"
 }

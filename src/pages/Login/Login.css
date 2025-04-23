@@ -1,0 +1,11 @@
+.loginContainer,
+.loginBox,
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loginContainer {
+  padding: 20px;
+}
